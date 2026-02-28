@@ -2,26 +2,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100vh;  /*vh-> viewport height; here it means 100% of visible screen height.*/
   margin: 0;
 }
 
 .quiz-card {
   background: var(--bg-card);
   border: none;
-  border-radius: 1.5rem; 
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border-radius: 1.5rem;    /*root em (rem) is relative to root font size- 16px. rem is superior to accessibility. if user changes text to large, layout scales accordingly*/
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);  /*0-> horizontal offset(shadow stays centered) 20px-> vertical offset(pushes shadow down) 50px-> blur 
+                                                   rgba instead of hex because hex does not support alpha (transparency) 0.6-> 60% opacity*/
 
   /*uniformity across all steps*/
-  width: 90%;  /* Responsive width */
-  max-width: 550px;
-  min-height: 450px;
+  width: 700px;  
+  max-width: 90%;
+  min-height: 500px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
   padding: 2rem;
 }
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers the question in the middle of that fixed height */
+} 
 
 .card-title {
   font-family: var(--main-font);
@@ -35,7 +43,6 @@ body {
   font-family: var(--main-font);
   font-weight: 600;
   font-size: 1.4rem; 
-  line-height: 1.4;
   margin-bottom: 2rem;
   color: white;
 }
@@ -48,6 +55,25 @@ body {
   margin-bottom: 2rem; 
 }
 
+.card-timer {
+  color: var(--text-secondary);
+  font-family: var(--main-font);
+  font-size: 0.8rem;
+}
+
+.progress {
+  height: 8px !important; 
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--accent-color) !important;
+  display: flex !important;
+  transition: width 1s linear !important;
+  will-change: width;
+}
+
 .btn-custom {
   background-color: var(--accent-color);
   font-family: var(--main-font);
@@ -58,18 +84,18 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
 }
 
 .btn-custom:hover {
   transform: translateY(-3px);
   background-color:   #9b8bf9;
-  color:var(--bg-card) !important; 
+  color:var(--bg-card) !important;   /*forces a style to apply, overriding any css rule*/
 }
 
 /*quiz option buttons*/
 .btn-quiz-option {
   background-color: rgba(255, 255, 255, 0.05);
+  font-family: var(--main-font);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 1rem 1.5rem; 
@@ -82,7 +108,30 @@ body {
 
 .btn-quiz-option:hover {
   background-color: rgba(255, 255, 255, 0.2);
+  font-family: var(--main-font);
   color: white;
   transform: translateY(-2px);
   border-color: #98b5ff;
+}
+
+/* Green for the correct answer */
+.btn-correct {
+  background-color: #2ecc71 !important;
+  border-color: #27ae60 !important;
+  color: white !important;
+  opacity: 1 !important;
+}
+
+/* Red for the user's wrong choice */
+.btn-wrong {
+  background-color: #e74c3c !important;
+  border-color: #c0392b !important;
+  color: white !important;
+  opacity: 1 !important;
+}
+
+.btn-quiz-option:disabled {
+  color: white;
+  opacity: 0.6;
+  cursor: not-allowed;
 }

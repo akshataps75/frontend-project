@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
+/*a pseudo-class
+matches the highest level element, usually html
+what to include:
+colors, fonts, border-radii, spacing scales*/
 :root {
   --bg-page: #3a0ca3; 
   --bg-card: #2d0258; 
